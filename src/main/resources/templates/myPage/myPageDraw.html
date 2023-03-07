@@ -170,21 +170,21 @@
 </div>
 <div id="review_background">
 
-    <ul th:each="d:${list}">
-        <form id="testForm">
-            <div class="drawList">
-                <img th:src="@{/images/}+${d.img_fname}" width="200" height="252">
-                <li>드로우번호 :<span th:text ="${d.drawid}" id="drawid"/> </li>
-                <li>제목 : <span th:text="${d.ticket_name}"/></li>
-                <li>관람일 : <span th:text="${d.ticket_date}"/></li>
-                <li>상영관 : <span th:text="${d.loc}"/></li>
-                <li>관람좌석 : <span th:text="${d.seatname}" id = "seatname"/></li>
-                <li><span th:text="${d.ticketid}" id="ticketid" hidden="hidden"></span></li>
-                <li><span th:text="${d.seatid}" id="seatid" hidden="hidden"></span></li>
-                <button id="pay_btn" type="submit"  th:if="${d.seatname != 'none'}" >결제하기</button>
-            </div>
-        </form>
-    </ul>
+        <ul th:each="d:${list}">
+            <form id="testForm">
+                <div class="drawList">
+                    <img th:src="@{/images/}+${d.img_fname}" width="200" height="252">
+                    <li>드로우번호 :<span th:text ="${d.drawid}" id="drawid"/> </li>
+                    <li>제목 : <span th:text="${d.ticket_name}"/></li>
+                    <li>관람일 : <span th:text="${d.ticket_date}"/></li>
+                    <li>상영관 : <span th:text="${d.loc}"/></li>
+                    <li>관람좌석 : <span th:text="${d.seatname}" id = "seatname"/></li>
+                    <li><span th:text="${d.ticketid}" id="ticketid" hidden="hidden"></span></li>
+                    <li><span th:text="${d.seatid}" id="seatid" hidden="hidden"></span></li>
+                    <button id="pay_btn" type="submit"  th:if="${d.seatname != 'none'}" >결제하기</button>
+                </div>
+            </form>
+        </ul>
 
 </div>
 <div id="main-footer">
