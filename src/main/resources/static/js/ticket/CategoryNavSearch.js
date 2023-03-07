@@ -71,8 +71,8 @@ for (var i = 1; i <=4; i++) {
         $("#search_btn").click(function(){ // 버튼 누르면 검색됨
             var keyword = $("#search_txt").val();
             sessionStorage.setItem("keyword", keyword);
-            var url = "search?keyword="+keyword;
-            location.replace(url);
+            var url = "/search?keyword="+keyword;
+            location.href = url;
         });
     }// 검색 end
 

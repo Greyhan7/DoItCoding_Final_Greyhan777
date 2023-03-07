@@ -9,27 +9,12 @@
     <link rel="stylesheet" type="text/css" href="/css/ticket/homepage_frame.css">
     <meta name="viewport" content="user-scalable=yes, initial-scale=1">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/ticket/CategoryNavSearch.js}"></script>
     <script type="text/javascript">
         $(function() {
 
             var custid = sessionStorage.getItem("custid");
-
-            if (custid != null) {
-                $("#login").css('display', 'none');
-                $("#regist").css('display', 'none');
-                $("#logout").css('display', 'inline-block');
-                $("#mypage").css('display', 'inline-block');
-            }
-
-            $("#logout").click(function (e) {
-                if (confirm("로그아웃 하시겠습니까?")) {
-                } else {
-                    return false;
-                }
-            });
             //수정된 내용 db에 반영하는 이벤트
-
-
             // 네비게이션 바에서 클릭하면 카테고리별 목록으로 넘어가도록
             var time = 1;
 
@@ -127,11 +112,14 @@
         })
     </script>
 </head>
-<body class="mypage_layout">
-<a href="main"><img src="/images/icon/logo.png" id="logo"></a>
+<body class="main_layout">
+<a href="/main"><img src="images/icon/logo.png" id="logo"></a>
 <div class="main_user">
-    <a href="/logout" id="logout"><img src="/images/icon/logouticon.png">로그아웃</a>
-    <a href="/myPage"><img src="/images/icon/mypageicon.png">마이페이지</a>
+    <a href="/notice/list" id="center"><img src="/images/icon/center.png">고객센터</a>
+    <a href="/login" id="login"><img src="/images/icon/loginicon.png">로그인</a>
+    <a href="/main" id="logout"><img src="/images/icon/logouticon.png">로그아웃</a>
+    <a href="/signUp" id="regist"><img src="/images/icon/signupicon.png">회원가입</a>
+    <a href="/myPage" id="mypage"><img src="/images/icon/mypageicon.png">마이페이지</a>
 </div>
 <nav id="navigation">
     <form action="" method="post" class="search">
@@ -177,29 +165,14 @@
         <li><a href="/myPageBook">예매내역</a></li>
         <li id="mydraw"><a href="/myPageDraw">드로우내역</a></li>
         <li><a href="/myPageReview">내 후기</a></li>
+        <li><a href="/myPageQnA">내 문의내역</a></li>
     </ul>
 </div>
-
-<!--        <ul th:each="d:${list}">-->
-<!--            <form id="testForm">-->
-<!--            <div class="drawlist">-->
-<!--            <img th:src="@{/images/}+${d.img_fname}" width="200" height="252">-->
-<!--            <li>드로우번호 :<span th:text ="${d.drawid}" id="drawid"/> </li>-->
-<!--            <li>제목 : <span th:text="${d.ticket_name}"/></li>-->
-<!--            <li>관람일 : <span th:text="${d.ticket_date}"/></li>-->
-<!--            <li>상영관 : <span th:text="${d.loc}"/></li>-->
-<!--            <li>관람좌석 : <span th:text="${d.seatname}" id = "seatname"/></li>-->
-<!--            <li><span th:text="${d.ticketid}" id="ticketid" hidden="hidden"></span></li>-->
-<!--            <li><span th:text="${d.seatid}" id="seatid" hidden="hidden"></span></li>-->
-<!--            <button id="pay_btn" type="submit"  th:if="${d.seatname != 'none'}" >결제하기</button>-->
-<!--            </div>-->
-<!--            </form>-->
-<!--        </ul>-->
-
 <div id="review_background">
+
     <ul th:each="d:${list}">
         <form id="testForm">
-            <div class="drawlist">
+            <div class="drawList">
                 <img th:src="@{/images/}+${d.img_fname}" width="200" height="252">
                 <li>드로우번호 :<span th:text ="${d.drawid}" id="drawid"/> </li>
                 <li>제목 : <span th:text="${d.ticket_name}"/></li>
@@ -212,6 +185,7 @@
             </div>
         </form>
     </ul>
+
 </div>
 <div id="main-footer">
     <footer class = "footer">
