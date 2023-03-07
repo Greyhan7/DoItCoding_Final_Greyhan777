@@ -106,16 +106,15 @@ public class QnaController {
         Optional<Qna> optionalQna=qs.findById(qna_no);
         if(optionalQna.isPresent()){
             Qna q =optionalQna.get();
-            String custidByQna_no=q.getCustomer().getCustid();
-            String custidInSession=(String)session.getAttribute("id");
-            if(!custidInSession.equals(custidByQna_no) && !custidInSession.equals("admin") && q.getQna_open().equals("n")){
-                mav.addObject("msg","비공개 글입니다.");
-                mav.setViewName("/error");
-            }else {
-                DBManager.updateQNAHit(qna_no);
-                q.setQna_hit(q.getQna_hit()+1);
-                mav.addObject("q",q);
-            }
+//            String custidByQna_no=q.getCustomer().getCustid();
+//            String custidInSession=(String)session.getAttribute("id");
+//            if(!custidInSession.equals(custidByQna_no) && !custidInSession.equals("admin") && q.getQna_open().equals("n")){
+//                mav.addObject("msg","비공개 글입니다.");
+//                mav.setViewName("/error");
+//            }else {
+            DBManager.updateQNAHit(qna_no);
+            q.setQna_hit(q.getQna_hit()+1);
+            mav.addObject("q",q);
         }else{
             mav.addObject("msg","삭제된 글이거나 잘못된 접근입니다.");
             mav.setViewName("/error");
@@ -334,9 +333,10 @@ public class QnaController {
     // DB 'checked' 칼럼 업데이트 n->y
     @ResponseBody
     @GetMapping("/updateCheckedToY")
-    public int updateCheckedToY(){
+    public int updateCheckedToY(HttpSession session){
+        String loginId=(String)session.getAttribute("id");
         int re=-1;
-        re=DBManager.updateCheckedToY();
+        re=DBManager.updateCheckedToY(loginId);
         return re;
     }
 

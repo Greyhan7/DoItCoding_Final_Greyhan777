@@ -72,7 +72,7 @@ for (var i = 1; i <=4; i++) {
             var keyword = $("#search_txt").val();
             sessionStorage.setItem("keyword", keyword);
             var url = "/search?keyword="+keyword;
-            location.href = url;
+            location.href=url;
         });
     }// 검색 end
 

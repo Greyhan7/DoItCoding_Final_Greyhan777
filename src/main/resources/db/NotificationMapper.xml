@@ -17,8 +17,8 @@
     </select>
 
 <!--    'checked' 칼럼 업데이트 n->y-->
-    <update id="updateCheckedToY">
-        update notification set checked='y' where checked='n'
+    <update id="updateCheckedToY" parameterType="java.lang.String">
+        update notification set checked='y' where checked='n' and custid=#{custid}
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer">
