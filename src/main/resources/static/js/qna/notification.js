@@ -18,7 +18,7 @@ $(function(){
                 console.log("list",list)
                 if(list.length!=0) {
                     $.each(list, function () {
-                        let div_no = $("<div></div>").text(this.notif_no)
+                        let div_no = $("<div></div>").text(this.notif_no).hide()
                         let div_title = $("<a></a>").text(this.qna_title + "에 답글이 달렸습니다.")
                             .attr("href", "/qna/detail/" + this.qna_no)
                         let div_x = $("<a></a>").text("X").addClass("x").attr("notif_no", this.notif_no)
