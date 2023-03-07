@@ -702,10 +702,10 @@ public class DBManager {
 	}
 
 	// 체크 안 한 알림 갯수
-	public static int countNChecked(){
+	public static int countNChecked(String custid){
 		int re=-1;
 		SqlSession session=sqlSessionFactory.openSession();
-		re=session.selectOne("notification.countNChecked");
+		re=session.selectOne("notification.countNChecked",custid);
 		session.close();
 		return re;
 	}

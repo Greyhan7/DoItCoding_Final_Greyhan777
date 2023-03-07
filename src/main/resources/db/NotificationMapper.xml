@@ -12,8 +12,8 @@
         n.custid=q.custid and n.custid=#{custid} order by notif_date desc
     </select>
     <!-- 체크 안 된 알림 갯수 세기 -->
-    <select id="countNChecked" resultType="java.lang.Integer">
-        select count(notif_no) from notification where checked='n'
+    <select id="countNChecked" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(notif_no) from notification where checked='n' and custid=#{custid}
     </select>
 
 <!--    'checked' 칼럼 업데이트 n->y-->
