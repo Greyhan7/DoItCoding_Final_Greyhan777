@@ -83,7 +83,7 @@
                 e.preventDefault();
             });	//#form_updateCustomer가 제출됨
 
-            $(document).on('click', '#btn_phoneconfirm', function(){ // 전화번호 중복
+            $(document).on('click', '#mypage_check', function(){ // 전화번호 중복
                 let phone = $("#phone").val();
                 var url = "ConfirmCustomerPhone";
                 var data = {phone:phone};
