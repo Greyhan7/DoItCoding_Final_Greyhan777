@@ -17,6 +17,18 @@
 
 <hr>
 
+### 🌊 서비스 흐름도
+
+<img width="441" alt="image" src="https://user-images.githubusercontent.com/49307938/223932828-eabd4587-05dc-44ad-9d97-2573c4c39215.png">
+
+<hr>
+
+### ㏈ ER 다이어 그램
+
+<img width="425" alt="image" src="https://user-images.githubusercontent.com/49307938/223933230-ee8d8a15-c7ec-481f-99f0-2ce9decdf12b.png">
+
+<hr>
+
 ### 📝 프로젝트 기록(조영민)
 
 - **2/15**

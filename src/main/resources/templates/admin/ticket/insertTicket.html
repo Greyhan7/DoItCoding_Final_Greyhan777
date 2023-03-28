@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/ticket/homepage_frame.css"/>
     <link rel="stylesheet" type="text/css" href="/css/ticket/homepage_content.css"/>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0422d38e6337330bf9571fe5e8c10f3&libraries=services"></script>
@@ -12,63 +13,43 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div id="adminticket_background">
-    <h2>작품 등록하기</h2>
-    <hr id="admin_hr">
-    <br>
     <form id="insertTicket" action="/admin/insertTicket" method="post" enctype="multipart/form-data">
-        <div id="left_div">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-            <span class="title_admin">티켓ID&nbsp;&nbsp;<input type="number" name="ticketid" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">장르&nbsp;&nbsp;<select id="cateid" name="cateid" class="admin_select"><br>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        티켓id : <input type="number" name="ticketid"><br>
+        장르 : <select id="cateid" name="cateid"> <br>
         <option value="1">영화</option>
         <option value="2">뮤지컬</option>
         <option value="3">연극</option>
         <option value="4">콘서트</option>
-        </select></span><br>
-            <br>
-            <!--카카오 api로 주소 검색하고 위도 경도 자동으로 받기-->
-            <span class="title_admin">장소&nbsp;&nbsp;
-        <input type="text" name="loc" class="content_admin">
-        <input type="text" id="search_addr" placeholder="주소" name="search_addr" class="content_admin">
+        </select> <br>
+        <!--카카오 api로 주소 검색하고 위도 경도 자동으로 받기-->
+        장소 :
+        <input type="text" name="loc">
+        <input type="text" id="search_addr" placeholder="주소" name="search_addr">
         <input type="button" value="주소 검색" id="btn_search"><br>
-        <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div></span><br>
-            <br>
-            <span class="title_admin">위도&nbsp;&nbsp;<input type="text" name="lat" id="lat" class="content_admin"></span>
-            <span class="title_admin" id="admin_lng">경도&nbsp;&nbsp;<input type="text" name="lng" id="lng" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">장소유형&nbsp;&nbsp;<select id="placeid" name="placeid" class="admin_select">
+        <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+        위도 : <input type="text" name="lat" id="lat">
+        경도 : <input type="text" name="lng" id="lng">
+        장소유형 : <select id="placeid" name="placeid">
         <option value="a">a</option>
         <option value="b">b</option>
         <option value="c">c</option>
-    </select></span><br>
-        </div>
-        <hr id="ticket_hr">
-        <div id="right_div">
-            <span class="title_admin">이름&nbsp;&nbsp;<input type="text" name="ticket_name" class="content_admin"></span>
-            <span class="title_admin" id="admin_price">가격&nbsp;&nbsp;<input type="number" name="price" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">날짜&nbsp;&nbsp;<input type="date" name="ticket_date" id="admin_date">
-        <input type="time" name="ticket_date2" id="admin_time"></span><br>
-            <br>
-            <span class="title_admin">내용&nbsp;&nbsp;<br><textarea rows="10" cols="80" name="content" class="textarea_admin"></textarea></span><br>
-            <br>
-            <span class="title_admin">비디오&nbsp;&nbsp;<input type="text" name="vid_url" class="content_admin"></span>
-            <span class="title_admin" id="limit">제한연령&nbsp;&nbsp;<input type="number" name="min_age" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">러닝타임&nbsp;&nbsp;<input type="number" name="runtime" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">캐스트&nbsp;&nbsp;<input type="text" name="cast" class="content_admin"></span><br>
-            <br>
-            <span class="title_admin">이미지&nbsp;&nbsp;<input type="file" name="uploadFile"></span><br>
-            <!--        메인 화면 이미지 : <input type="file" name="uploadFile_main">-->
-            <input type="file" name="uploadFile_main">
-        </div>
-        <input type="submit" value="등록" id="admin_submit">
-        <input type="reset" value="취소" id="admin_reset">
+    </select> <br>
+        이름 :    <input type="text" name="ticket_name"> <br>
+        가격 : <input type="number" name="price"> <br>
+        날짜 : <input type="date" name="ticket_date">
+        <input type="time" name="ticket_date2">
+        <br>
+        내용 : <textarea rows="10" cols="80" name="content"></textarea> <br>
+        비디오 : <input type="text" name="vid_url"> <br>
+        제한연령 : <input type="number" name="min_age"> <br>
+        러닝타임 : <input type="number" name="runtime"> <br>
+        캐스트 : <input type="text" name="cast"> <br>
+        이미지 : <input type="file" name="uploadFile"><br>
+        메인 화면 이미지 : <input type="file" name="uploadFile_main">
+        <input type="submit" value="등록">
+        <input type="reset" value="취소">
     </form>
-</div>
 </body>
 <script>
     // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
