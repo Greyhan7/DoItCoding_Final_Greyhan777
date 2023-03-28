@@ -28,7 +28,7 @@ public class ScheduledDraw {
     private TicketDAO ticketDAO;
 
     //매일 오후 12시에 다음날이 상영일인 상품에 대해 드로우 진행
-    @Scheduled(cron = "0 27 13 * * ?")
+    @Scheduled(cron = "30 57 14 * * ?")
     public void draw(){
         List<TicketVO> tickets = DBManager.selectTicketWhichDraw();
         int toYear = date.getYear()+1900;
