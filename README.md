@@ -14,6 +14,7 @@
  - DataBase : ORACLE
  - ORM : MyBatis, JPA
  - Framework : SpringBoot(3.0)
+ - IDE : IntelliJ Ultimate 2022
 
 <hr>
 
