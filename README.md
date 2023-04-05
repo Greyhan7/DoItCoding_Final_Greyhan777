@@ -31,7 +31,11 @@
 <hr>
 
 
-### 프로젝트 기록 (유근형) : main, search, category, admin, myPage 작업. 그 외 login, regist 기능 일부 구현.
+### ✏️ 프로젝트 기록 (유근형) 
+
+#### main, search, category, admin, myPage 작업. 그 외 login, regist 기능 일부 구현.
+
+<br>
 
 * 23.02.17-20
   * main.html을 Spring으로 옮기기 (dao, entity, service, mapper 작성)
