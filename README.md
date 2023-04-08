@@ -1,5 +1,9 @@
 # DoItCoding_Final
 
+### :alarm_clock: 개발기간
+- 2023.02.15 - 2023.03.06
+
+
 ### 👥 멤버구성
  - 김고운
  - 신윤경
@@ -30,6 +34,72 @@
 
 <hr>
 
+### 프로젝트 담당기능 및 코드
+<details>
+<summary>메인 화면 구성 (시간, 카테고리, 랭킹별 상영작 출력)</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>검색 기능 구현</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>카테고리별 상영작 출력</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>로그인</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>회원가입 기능 일부 구현(정규화, 아이디 중복확인, 비밀번호 일치 불일치)</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>관리자 페이지 전담</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>mypage에서 qna 목록 </summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+
+<hr>
 
 ### ✏️ 프로젝트 기록 (유근형) 
 
