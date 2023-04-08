@@ -101,6 +101,37 @@
 
 <hr>
 
+### 주요 문제 해결기록
+<details>
+<summary>페이징 처리를 위한 모듈화</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>카카오 api 활용하여 주소 위도 경도값 로자동으로 가져오기</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+<details>
+<summary>JPA? Mybatis? 무엇을 선택할까</summary>
+<div markdown="1">
+
+
+
+</div>
+</details>
+
+
+<hr>
+
 ### ✏️ 프로젝트 기록 (유근형) 
 
 #### main, search, category, admin, myPage 작업. 그 외 login, regist 기능 일부 구현.
