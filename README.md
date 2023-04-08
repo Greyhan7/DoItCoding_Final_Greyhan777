@@ -42,7 +42,7 @@
 
 ### 🌊 서비스 흐름도
 
-<img width="441" alt="image" src="https://user-images.githubusercontent.com/49307938/223932828-eabd4587-05dc-44ad-9d97-2573c4c39215.png">
+<img width="841" alt="image" src="https://user-images.githubusercontent.com/97737386/229759345-d6083d7b-17ca-4515-bfa6-0e26533c5371.png">
 
 <hr>
 
