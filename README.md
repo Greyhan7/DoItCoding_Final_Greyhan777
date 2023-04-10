@@ -1,6 +1,5 @@
 # T-Catch 예매 사이트
 
-
 ### 📓 프로젝트 설명
 인터파크 티켓, Yes24 티켓 등과 같이 영화 시사회, 뮤지컬, 연극, 콘서트를 예매할 수 있는 종합 예매 사이트입니다.
 
@@ -56,8 +55,22 @@
 <details>
 <summary>메인 화면 구성 (시간, 카테고리, 랭킹별 상영작 출력)</summary>
 <div markdown="1">
+<br>
 
+#### 1-1.메인화면
 
+![image](https://user-images.githubusercontent.com/99037697/230832571-dacda879-e773-4292-bb7f-a390de2894d8.png)
+
+<br>
+
+#### 1-2. 장르별 랭킹, 시간대별 상영작
+
+![image](https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png)
+
+- 작동화면
+:pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/be6a0e084076056878e20a1871480e090f71ab59/src/main/resources/templates/main.html#L76)
+
+![작동화면](https://user-images.githubusercontent.com/99037697/230836317-409dde59-7832-4bc9-a9fa-049f08cd2dce.gif)
 
 </div>
 </details>
