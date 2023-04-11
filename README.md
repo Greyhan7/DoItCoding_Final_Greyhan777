@@ -9,8 +9,8 @@
 
 그 외 주요 구현 기능은 다음과 같습니다.
 
-- 회원가입 및 로그인.
-- 5점 만점의 리뷰 남기기.
+- 회원가입 및 로그인, 아이디 비밀번호 찾기(인증코드 이메일, 핸드폰으로 검증).
+- 5점 만점으로 리뷰 남기기.
 - 리뷰 점수를 바탕으로 메인 화면에서 카테고리 별로 랭킹 3위까지 출력.
 - 카카오 챗봇을 통한 간단한 상담 (현재 불가능)
 - 일반적인 사항 혹은 사용자가 예매한 상영작에 대한 1대1 문의 (비밀 글 처리 가능).
@@ -53,7 +53,7 @@
 
 ### 프로젝트 담당기능 및 코드
 <details>
-<summary>메인 화면 구성 (시간, 카테고리, 랭킹별 상영작 출력)</summary>
+<summary>1. 메인 화면 구성 (시간, 카테고리, 랭킹별 상영작 출력)</summary>
 <div markdown="1">
 <br>
 
@@ -76,86 +76,112 @@
 </details>
 
 <details>
-<summary>검색 기능 구현</summary>
+<summary>2. 검색 기능 및 카테고리별 상영작 출력 (js파일로 모듈화)</summary>
 <div markdown="1">
+<br>
+
+- 모든 페이지에 공통적으로 들어가는 기능이기 때문에 유지보수 용이를 위해 CategoryNavSearch.js 파일로 분리하여 모듈화하였음.
 
 
+#### 2-1. 검색 기능
+ :pushpin: [코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/static/js/ticket/CategoryNavSearch.js#L61)
+
+![검색](https://user-images.githubusercontent.com/99037697/231095912-8b345be8-95d3-4a21-97e3-38647922a1be.gif)
+
+<br>
+
+#### 2-2. 카테고리별 상영작 출력 (무한 스크롤)
+:pushpin: [코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/static/js/ticket/CategoryNavSearch.js#L1)
+
+![카테고리 무한스크롤](https://user-images.githubusercontent.com/99037697/231096263-e84b5f0e-772d-42d4-b90a-4cd45dcef4c6.gif)
 
 </div>
 </details>
+
 
 <details>
-<summary>카테고리별 상영작 출력</summary>
+<summary>3. 로그인, 회원가입 기능 일부 구현</summary>
 <div markdown="1">
 
 
 
 </div>
 </details>
+
 
 <details>
-<summary>로그인</summary>
+<summary>4. 관리자 페이지 전담</summary>
 <div markdown="1">
+<br>
+
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231105156-2f77c494-cc4b-48fe-91d5-ebae62c5c76f.png">
+
+- mainAdmin 페이지를 통해서 고객관리, 상영작 관리, 공지사항 관리 페이지로 접속 가능.
+- :pushpin: [Controller 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/java/com/example/finalpro/controller/AdminController.java)
+
+#### 4-1. 고객 관리 페이지
+
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231105715-4a9e5200-d4ba-4fc3-8a9f-de9ed4654a25.png">
+
+- id, 이름, 생년월일, 성별에 따라 정렬.
+- id와 이름을 기준으로 검색 가능.
+- 사용자가 예매한 상영작, 작성한 qna 내역을 조회 가능.
+- 사용자 아이디를 입력하면 사용자의 정보를 수정할 수 있고, 삭제를 누르면 사용자 정보가 삭제된다.
+
+<br>
+
+![고객 검색](https://user-images.githubusercontent.com/99037697/231107730-981fad77-0356-4fb0-b92d-a08bd8539ba5.gif)
+
+<br>
+
+![qna  내역](https://user-images.githubusercontent.com/99037697/231107747-9cc5cd1d-47d9-42ca-9833-ecb137c80681.gif)
 
 
+#### 4-2. 작품 관리 페이지
+
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231107846-cf110d60-cb9d-4de4-a016-61d40e07a181.png">
+
+- 상영작 정보를 조회, 검색, 추가 ,수정하거나 삭제할 수 있음.
+
+<br>
+
+![작품 추가](https://user-images.githubusercontent.com/99037697/231112469-8ddd1f69-a684-495f-8df9-bcc44557557c.gif)
+
+<br>
+
+#### 4-3. 공지사항 페이지
+<br>
+
+- 관리자 페이지에서 공지사항 목록 페이지로 이동 가능.
 
 </div>
 </details>
-
-<details>
-<summary>회원가입 기능 일부 구현(정규화, 아이디 중복확인, 비밀번호 일치 불일치)</summary>
-<div markdown="1">
-
-
-
-</div>
-</details>
-
-<details>
-<summary>관리자 페이지 전담</summary>
-<div markdown="1">
-
-
-
-</div>
-</details>
-
-<details>
-<summary>mypage에서 qna 목록 </summary>
-<div markdown="1">
-
-
-
-</div>
-</details>
-
 
 <hr>
 
 ### 주요 문제 해결기록
 <details>
-<summary>페이징 처리를 위한 모듈화</summary>
+<summary>중복 페이징 처리를 위한 모듈화</summary>
 <div markdown="1">
 
+다양한 페이지에서 페이징 처리를 구현하기 때문에 Paging.java 파일을 만들어 공통되게 설정할 수 있도록 모듈화하였습니다.
 
+페이지마다 출력되는 레코드의 숫자가 동일하기 때문에 유지보수 측면에서 용이해졌습니다.
+
+:pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/java/com/example/finalpro/function/page/Paging.java)
 
 </div>
 </details>
 
 <details>
-<summary>카카오 api 활용하여 주소 위도 경도값 로자동으로 가져오기</summary>
+<summary>카카오 api 활용하여 주소 위도 경도값 자동으로 가져오기</summary>
 <div markdown="1">
 
+상영작 상세 페이지에서 상영하는 장소의 지도를 표시해야해서 해당 장소에 대한 위도와 경도 정보를 필요했는데, 이를 일일히 입력하는 게 번거로웠습니다.
 
+따라서 카카오 맵 api를 활용하여 input에 장소명을 입력하면 위도와 경도가 자동으로 기입되도록 설정하였습니다.
 
-</div>
-</details>
-
-<details>
-<summary>JPA? Mybatis? 무엇을 선택할까</summary>
-<div markdown="1">
-
-
+:pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/templates/admin/ticket/insertTicket.html#L55)
 
 </div>
 </details>
@@ -168,6 +194,10 @@
 #### main, search, category, admin, myPage 작업. 그 외 login, regist 기능 일부 구현.
 
 <br>
+
+<details>
+<summary>일자별 기록</summary>
+<div markdown="1">
 
 * 23.02.17-20
   * main.html을 Spring으로 옮기기 (dao, entity, service, mapper 작성)
@@ -241,3 +271,8 @@
       - 수정이 안됨. -> html form의 action 경로가 이상했음 O
     - admin/listCustomer
       - 자식레코드가 있으면 에러페이지 뜸. -> DB에서 custid를 참조하는 테이블들에 cascade 설정하면 된다.
+
+</div>
+</details>
+
+
