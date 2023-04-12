@@ -105,6 +105,14 @@
 
 
 #### 2-1. 검색 페이지
+ 
+ - 작품명과 출연자 이름을 토대로 검색 결과 출력.
+ ```html
+ <select id="findSearchTicket" resultType="ticketVO">
+    select * from ticket where ticket_name like '%'||#{keyword}||'%' or cast like '%'||#{keyword}||'%'
+  </select>
+ ```
+ 
  :pushpin: [코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/static/js/ticket/CategoryNavSearch.js#L61)
 
 ![검색](https://user-images.githubusercontent.com/99037697/231095912-8b345be8-95d3-4a21-97e3-38647922a1be.gif)
@@ -112,6 +120,11 @@
 <br>
 
 #### 2-2. 카테고리별 상영작 출력 (무한 스크롤)
+ 
+ - 내비게이션 바에서 카테고리 클릭시 해당 작품 출력.
+ - 예매 사이트 특성상 사용자가 편하게 아이쇼핑하는 경험을 할 수 있도록 상영작 목록을 볼 때 페이지를 일일히 누르기보다 무한 스크롤 방식을 채택하였음.
+ 
+ 
 :pushpin: [코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/static/js/ticket/CategoryNavSearch.js#L1)
 
 ![카테고리 무한스크롤](https://user-images.githubusercontent.com/99037697/231096263-e84b5f0e-772d-42d4-b90a-4cd45dcef4c6.gif)
