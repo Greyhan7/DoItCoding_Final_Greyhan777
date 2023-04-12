@@ -64,7 +64,28 @@
 <br>
 
 #### 1-2. 장르별 랭킹, 시간대별 상영작
+
  :pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/be6a0e084076056878e20a1871480e090f71ab59/src/main/resources/templates/main.html#L76)
+
+- cateid에 따라 장르별로 다르게 출력되도록 정의.
+- time 변수를 정의하여 각각 값이 0, 1, 2일떄 과거, 현재, 미래 상영작을 출력.
+- 상영일이 현재 날짜보다 과거면 과거 상영작, 현재 날짜 ~ 현재 날짜+14일이면 현재 상영작, 현재 날짜+14일보다 크면 미래 상영작으로 mapper에서 sql문 정의.
+
+```html
+<select id="findAllTicketByCategory" resultType="ticketVO">
+    select * from ticket where cateid=#{cateid} and
+    <if test="time==0">
+      ticket_date &lt; to_char(sysdate, 'yyyy/mm/dd')
+    </if>
+    <if test="time==1">
+      ticket_date &gt; to_char(sysdate, 'yyyy/mm/dd') and ticket_date &lt;= to_char(sysdate+14, 'yyyy/mm/dd')
+    </if>
+    <if test="time==2">
+      ticket_date &gt; to_char(sysdate+14, 'yyyy/mm/dd')
+    </if>
+  </select>
+
+```
 
 <img width="825" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
 
@@ -76,14 +97,14 @@
 </details>
 
 <details>
-<summary>2. 검색 기능 및 카테고리별 상영작 출력 (js파일로 모듈화)</summary>
+<summary>2. 검색 & 카테고리 페이지 (js파일로 모듈화)</summary>
 <div markdown="1">
 <br>
 
 - 모든 페이지에 공통적으로 들어가는 기능이기 때문에 유지보수 용이를 위해 CategoryNavSearch.js 파일로 분리하여 모듈화하였음.
 
 
-#### 2-1. 검색 기능
+#### 2-1. 검색 페이지
  :pushpin: [코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/static/js/ticket/CategoryNavSearch.js#L61)
 
 ![검색](https://user-images.githubusercontent.com/99037697/231095912-8b345be8-95d3-4a21-97e3-38647922a1be.gif)
