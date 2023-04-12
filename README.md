@@ -59,13 +59,13 @@
 
 #### 1-1.메인화면
 
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/230832571-dacda879-e773-4292-bb7f-a390de2894d8.png">
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/230832571-dacda879-e773-4292-bb7f-a390de2894d8.png">
 
 <br>
 
 #### 1-2. 장르별 랭킹, 시간대별 상영작
 
-<img width="825" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
+<img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
 
  :pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/be6a0e084076056878e20a1871480e090f71ab59/src/main/resources/templates/main.html#L76)
 
@@ -90,8 +90,7 @@
 ```
 
 - 작동화면
-
-![작동화면](https://user-images.githubusercontent.com/99037697/230836317-409dde59-7832-4bc9-a9fa-049f08cd2dce.gif)
+ <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230836317-409dde59-7832-4bc9-a9fa-049f08cd2dce.gif">
 
 </div>
 </details>
@@ -114,8 +113,7 @@
   </select>
  ```
  
-
-![검색](https://user-images.githubusercontent.com/99037697/231095912-8b345be8-95d3-4a21-97e3-38647922a1be.gif)
+ <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/231095912-8b345be8-95d3-4a21-97e3-38647922a1be.gif">
 
 <br>
 
@@ -125,7 +123,7 @@
  - 예매 사이트 특성상 사용자가 편하게 아이쇼핑하는 경험을 할 수 있도록 상영작 목록을 볼 때 페이지를 일일히 누르기보다 무한 스크롤 방식을 채택하였음.
  - scroll이 하단에 위치하는 순간 page가 증가하도록 설정.
 
-![카테고리 무한스크롤](https://user-images.githubusercontent.com/99037697/231096263-e84b5f0e-772d-42d4-b90a-4cd45dcef4c6.gif)
+ <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/231096263-e84b5f0e-772d-42d4-b90a-4cd45dcef4c6.gif">
 
 </div>
 </details>
@@ -145,14 +143,14 @@
 <div markdown="1">
 <br>
 
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231105156-2f77c494-cc4b-48fe-91d5-ebae62c5c76f.png">
+<img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/231105156-2f77c494-cc4b-48fe-91d5-ebae62c5c76f.png">
 
 - mainAdmin 페이지를 통해서 고객관리, 상영작 관리, 공지사항 관리 페이지로 접속 가능.
 - :pushpin: [Controller 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/java/com/example/finalpro/controller/AdminController.java)
 
 #### 4-1. 고객 관리 페이지
 
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231105715-4a9e5200-d4ba-4fc3-8a9f-de9ed4654a25.png">
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/231105715-4a9e5200-d4ba-4fc3-8a9f-de9ed4654a25.png">
 
 - id, 이름, 생년월일, 성별에 따라 정렬.
 - id와 이름을 기준으로 검색 가능.
@@ -163,18 +161,18 @@
  
  - 고객 페이지에서 검색 기능 작동화면
 
-![고객 검색](https://user-images.githubusercontent.com/99037697/231107730-981fad77-0356-4fb0-b92d-a08bd8539ba5.gif)
+ <img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/231107730-981fad77-0356-4fb0-b92d-a08bd8539ba5.gif">
 
 <br>
  
  - 고객 페이지에서 qna 작성 내역 확인 작동화면
 
-![qna  내역](https://user-images.githubusercontent.com/99037697/231107747-9cc5cd1d-47d9-42ca-9833-ecb137c80681.gif)
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/231107747-9cc5cd1d-47d9-42ca-9833-ecb137c80681.gif">
 
 
 #### 4-2. 작품 관리 페이지
 
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/99037697/231107846-cf110d60-cb9d-4de4-a016-61d40e07a181.png">
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/231107846-cf110d60-cb9d-4de4-a016-61d40e07a181.png">
 
 - 상영작 정보를 조회, 검색, 추가 ,수정하거나 삭제할 수 있음.
 
@@ -182,7 +180,7 @@
  
  - 작품 추가 작동화면
 
-![작품 추가](https://user-images.githubusercontent.com/99037697/231112469-8ddd1f69-a684-495f-8df9-bcc44557557c.gif)
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/99037697/231112469-8ddd1f69-a684-495f-8df9-bcc44557557c.gif">
 
 <br>
 
