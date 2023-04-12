@@ -65,6 +65,8 @@
 
 #### 1-2. 장르별 랭킹, 시간대별 상영작
 
+<img width="825" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
+
  :pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/be6a0e084076056878e20a1871480e090f71ab59/src/main/resources/templates/main.html#L76)
 
 - cateid에 따라 장르별로 다르게 출력되도록 정의.
@@ -86,8 +88,6 @@
   </select>
 
 ```
-
-<img width="825" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
 
 - 작동화면
 
