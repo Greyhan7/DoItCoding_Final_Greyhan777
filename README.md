@@ -150,10 +150,14 @@
 - 사용자 아이디를 입력하면 사용자의 정보를 수정할 수 있고, 삭제를 누르면 사용자 정보가 삭제된다.
 
 <br>
+ 
+ - 고객 페이지에서 검색 기능 작동화면
 
 ![고객 검색](https://user-images.githubusercontent.com/99037697/231107730-981fad77-0356-4fb0-b92d-a08bd8539ba5.gif)
 
 <br>
+ 
+ - 고객 페이지에서 qna 작성 내역 확인 작동화면
 
 ![qna  내역](https://user-images.githubusercontent.com/99037697/231107747-9cc5cd1d-47d9-42ca-9833-ecb137c80681.gif)
 
@@ -165,6 +169,8 @@
 - 상영작 정보를 조회, 검색, 추가 ,수정하거나 삭제할 수 있음.
 
 <br>
+ 
+ - 작품 추가 작동화면
 
 ![작품 추가](https://user-images.githubusercontent.com/99037697/231112469-8ddd1f69-a684-495f-8df9-bcc44557557c.gif)
 
