@@ -22,7 +22,6 @@
                 scrollPage = 1;
             }
 
-            let loading = false;
             $(document).ready(function(){
                 selectTicket(scrollPage);
                 // Scroll
@@ -37,14 +36,12 @@
 
             // 카테고리+시간에 해당하는 목록 출력
             var selectTicket = function(scrollPage){
-                loading = true;
                 $.ajax("SelectTicketCategory", {
                     data:{time:time, cateid:cateid, page:scrollPage},
                     success:function(arr){
                         console.log("ajax 통신!")
                         console.log("scrollPage :",scrollPage);
                         console.log("arr :", arr);
-                        loading = false;
 
                         for (var i = 0; i < arr.length; i++) {
 
