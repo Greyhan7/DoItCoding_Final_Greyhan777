@@ -146,7 +146,12 @@
 <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/231105156-2f77c494-cc4b-48fe-91d5-ebae62c5c76f.png">
 
 - mainAdmin 페이지를 통해서 고객관리, 상영작 관리, 공지사항 관리 페이지로 접속 가능.
+- 정석적인 CRUD, 페이징 처리, 정렬, 검색 기능을 가진 두 게시판.
+- Thymeleaf를 통해 프론트 구현 및 페이징 처리, 정렬, 검색 기능 활용.
+
 - :pushpin: [Controller 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/java/com/example/finalpro/controller/AdminController.java)
+- :pushpin: [View 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/adcfbb19db9c44741fc87fc67c10323d4d1d1c95/src/main/resources/templates/admin/customer/list.html)
+
 
 #### 4-1. 고객 관리 페이지
 
