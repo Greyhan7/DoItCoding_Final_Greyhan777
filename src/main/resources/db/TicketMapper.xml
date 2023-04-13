@@ -34,10 +34,10 @@
            ticket_date &lt; to_char(sysdate, 'yyyy/mm/dd')
         </if>
         <if test="time==1">
-          ticket_date &gt; to_char(sysdate, 'yyyy/mm/dd') and ticket_date &lt;= to_char(sysdate+7, 'yyyy/mm/dd')
+          ticket_date &gt; to_char(sysdate, 'yyyy/mm/dd') and ticket_date &lt;= to_char(sysdate+14, 'yyyy/mm/dd')
         </if>
         <if test="time==2">
-          ticket_date &gt; to_char(sysdate+7, 'yyyy/mm/dd')
+          ticket_date &gt; to_char(sysdate+14, 'yyyy/mm/dd')
         </if>
         order by ticketid) a)
         where n between #{startRecord} and #{endRecord}

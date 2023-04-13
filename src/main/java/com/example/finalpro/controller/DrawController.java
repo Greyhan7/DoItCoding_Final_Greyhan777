@@ -95,6 +95,7 @@ public class DrawController {
 
         lucker = new String[count];                 //전역변수에 저장하여 드로우 된 회원들을 저장
 
+        // 배열의 삽입, 삭제가 용이하도록  LinkedList 사용
         LinkedList<DrawVO> list = new LinkedList<>();
 
         for(DrawVO d : draw){

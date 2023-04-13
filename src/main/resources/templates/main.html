@@ -28,7 +28,6 @@
 
       sessionStorage.setItem("custid", $("#sessionId").val())
 
-
       console.log(sessionStorage.getItem("custid"));
       var custid = sessionStorage.getItem("custid");
       console.log("custid"+custid);
@@ -113,6 +112,7 @@
         $.ajax("SelectTicketMain", {
           data:{time:1, cateid:cateid},
           success:function(arr){
+            console.log("출력 결과 ",arr);
             $("#current_preview0").empty();
             $("#current_preview1").empty();
             $("#current_preview2").empty();
@@ -147,6 +147,7 @@
         $.ajax("SelectTicketMain", {
           data:{time:2, cateid:cateid},
           success:function(arr){
+            console.log("출력 결과 ",arr);
             $("#future_preview0").empty();
             $("#future_preview1").empty();
             $("#future_preview2").empty();
@@ -177,74 +178,86 @@
 
 
       var cateid = 2; // review 테이블에 카테고리가 연극인 것 외에는 인스턴스가 없으므로 기본값을 2로 설정함
-      // 사용자가 가입 시 입력한 선호 카테고리가 기본값으로 되게하기
-      // if(custid != "none"){
-      //   $.ajax("GetCustomerAction", {
-      //     data:{custid:custid},
-      //     async:false,
-      //     success:function(key, value){
-      //       console.log("ajax 안 " +key.cateid);
-      //       cateid = key.cateid;
-      //     }
-      //   });
-      // }
+
       selectRankingBycategory();
       selectCurrentBycategory();
       selectFutureBycategory();
 
-      // 랭킹에서 카테고리 클릭
-      $(document).on('click', '#rank_cate1', function(){
-        cateid =1;
-        selectRankingBycategory();
-      });
-      $(document).on('click', '#rank_cate2', function(){
-        cateid =2;
-        selectRankingBycategory();
-      });
-      $(document).on('click', '#rank_cate3', function(){
-        cateid =3;
-        selectRankingBycategory();
-      });
-      $(document).on('click', '#rank_cate4', function(){
-        cateid =4;
-        selectRankingBycategory();
+      $(document).on('click', '.preview', function(){
+        // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
+        cateid = $(this).attr("id").match(/\d+/)[0];
+        let id = $(this).attr("id");
+        console.log(id);
+        switch (id){
+          case "rank_cate"+cateid :
+            selectRankingBycategory();
+            break;
+          case "current_cate"+cateid:
+            selectCurrentBycategory();
+            break;
+          case "future_cate"+cateid:
+            selectFutureBycategory();
+            break;
+        }
       });
 
-      // 현재 상영작 카테고리 클릭
-      $(document).on('click', '#current_cate1', function(){
-        cateid = 1;
-        selectCurrentBycategory();
-      })
-      $(document).on('click', '#current_cate2', function(){
-        cateid = 2;
-        selectCurrentBycategory();
-      })
-      $(document).on('click', '#current_cate3', function(){
-        cateid = 3;
-        selectCurrentBycategory();
-      })
-      $(document).on('click', '#current_cate4', function(){
-        cateid = 4;
-        selectCurrentBycategory();
-      })
 
-      // 미래 상영작 카테고리 클릭
-      $(document).on('click', '#future_cate1', function(){
-        cateid = 1;
-        selectFutureBycategory();
-      })
-      $(document).on('click', '#future_cate2', function(){
-        cateid = 2;
-        selectFutureBycategory();
-      })
-      $(document).on('click', '#future_cate3', function(){
-        cateid = 3;
-        selectFutureBycategory();
-      })
-      $(document).on('click', '#future_cate4', function(){
-        cateid = 4;
-        selectFutureBycategory();
-      })
+      // // 랭킹에서 카테고리 클릭
+      // $(document).on('click', '#rank_cate1', function(){
+      //   cateid =1;
+      //   selectRankingBycategory();
+      // });
+      // $(document).on('click', '#rank_cate2', function(){
+      //   cateid =2;
+      //   selectRankingBycategory();
+      // });
+      // $(document).on('click', '#rank_cate3', function(){
+      //   cateid =3;
+      //   selectRankingBycategory();
+      // });
+      // $(document).on('click', '#rank_cate4', function(){
+      //   cateid =4;
+      //   selectRankingBycategory();
+      // });
+      //
+      //
+      //
+      //
+      // // 현재 상영작 카테고리 클릭
+      // $(document).on('click', '#current_cate1', function(){
+      //   cateid = 1;
+      //   selectCurrentBycategory();
+      // })
+      // $(document).on('click', '#current_cate2', function(){
+      //   cateid = 2;
+      //   selectCurrentBycategory();
+      // })
+      // $(document).on('click', '#current_cate3', function(){
+      //   cateid = 3;
+      //   selectCurrentBycategory();
+      // })
+      // $(document).on('click', '#current_cate4', function(){
+      //   cateid = 4;
+      //   selectCurrentBycategory();
+      // })
+      //
+      // // 미래 상영작 카테고리 클릭
+      // $(document).on('click', '#future_cate1', function(){
+      //   cateid = 1;
+      //   selectFutureBycategory();
+      // })
+      // $(document).on('click', '#future_cate2', function(){
+      //   cateid = 2;
+      //   selectFutureBycategory();
+      // })
+      // $(document).on('click', '#future_cate3', function(){
+      //   cateid = 3;
+      //   selectFutureBycategory();
+      // })
+      // $(document).on('click', '#future_cate4', function(){
+      //   cateid = 4;
+      //   selectFutureBycategory();
+      // })
 
       // 로그인한 정보 불러오기
 
@@ -345,10 +358,10 @@
   <div>
     <h2>장르별랭킹</h2>
     <ul>
-      <li><a id="rank_cate1">시사회</a></li>
-      <li><a id="rank_cate2">뮤지컬</a></li>
-      <li><a id="rank_cate3">연극</a></li>
-      <li><a id="rank_cate4">콘서트</a></li>
+      <li><a id="rank_cate1" class="preview">시사회</a></li>
+      <li><a id="rank_cate2" class="preview">뮤지컬</a></li>
+      <li><a id="rank_cate3" class="preview">연극</a></li>
+      <li><a id="rank_cate4" class="preview">콘서트</a></li>
     </ul>
     <br>
   </div>
@@ -362,10 +375,10 @@
   <div>
     <h2>현재상영작 </h2>
     <ul id="current_cate">
-      <li><a id="current_cate1">시사회</a></li>
-      <li><a id="current_cate2">뮤지컬</a></li>
-      <li><a id="current_cate3">연극</a></li>
-      <li><a id="current_cate4">콘서트</a></li>
+      <li><a id="current_cate1" class="preview">시사회</a></li>
+      <li><a id="current_cate2" class="preview">뮤지컬</a></li>
+      <li><a id="current_cate3" class="preview">연극</a></li>
+      <li><a id="current_cate4" class="preview">콘서트</a></li>
     </ul>
     <br>
   </div>
@@ -378,10 +391,10 @@
   <div>
     <h2>개봉예정작</h2>
     <ul id="future_cate">
-      <li><a id="future_cate1">시사회</a></li>
-      <li><a id="future_cate2">뮤지컬</a></li>
-      <li><a id="future_cate3">연극</a></li>
-      <li><a id="future_cate4">콘서트</a></li>
+      <li><a id="future_cate1" class="preview">시사회</a></li>
+      <li><a id="future_cate2" class="preview">뮤지컬</a></li>
+      <li><a id="future_cate3" class="preview">연극</a></li>
+      <li><a id="future_cate4" class="preview">콘서트</a></li>
     </ul>
     <br>
   </div>
