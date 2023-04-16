@@ -233,6 +233,8 @@
 </div>
 </details>
 
+### ✂️ 보완 및 수정 사항
+
 <details>
 <summary>중복되는 코드 간략화 및 기능 추가</summary>
 <div markdown="1">
