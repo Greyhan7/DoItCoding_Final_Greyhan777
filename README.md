@@ -32,9 +32,10 @@
 
 ### ⚙️ 개발환경
  - java 17
- - DataBase : ORACLE
+ - DataBase : ORACLE 21c
  - ORM : MyBatis, JPA
  - Framework : SpringBoot(3.0)
+ - View : HTML5, CSS3, JavaScript, Thymeleaf
  - IDE : IntelliJ Ultimate 2022
 
 <hr>
@@ -243,6 +244,8 @@
  또한 프로젝트 완성 시점에서는 현재, 미래 상영작이 3개 이상임에도 순서대로 출력되는 3개의 상영작만 확인 가능하였는데
  
  이를 보완하여 '다음으로' 버튼을 누르면 나머지 상영작들이 출력될 수 있도록 코드를 수정하였습니다 (현재 미래 상영작만 적용).
+ 
+ :pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/b2c4f4bb12c434ee1e4180593366df6e9161cbdc/src/main/resources/templates/main.html#L144)
  
   <details>
   <summary>이전 코드</summary>
