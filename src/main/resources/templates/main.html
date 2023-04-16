@@ -141,29 +141,53 @@
         });
       }//현재 상영작 출력 end
 
+      // '다음으로' 버튼을 누르면 Ajax 호출할 때 다음 3개 더 출력하게 하기
+      // slide_future : 페이지 번호 개념.
+      // slide_future_index : slide_future, 즉 해당 페이지에서 출력하는 마지막 index번호
+      // total_length : Ajax로 출력하는 레코드의 총 숫자 (만약 slide_future_index가 total_length보다 크면 다시 slide_future를 1로 초기화한다)
+      let slide_future = 1;
+      let slide_future_index = 3;
+      let total_length;
+
+      // '다음으로' 버튼을 클릭하면 다음 3개의 상영작을 출력하기
+  $(document).on('click', '#btn_next', function(){
+    slide_future++;
+    slide_future_index = slide_future * 3;
+    selectFutureBycategory(slide_future_index);
+  });
 
       // 미래상영작 출력
-      var selectFutureBycategory = function(){
+      var selectFutureBycategory = function(slide_future_index){
         $.ajax("SelectTicketMain", {
           data:{time:2, cateid:cateid},
           success:function(arr){
+            total_length = arr.length;
             console.log("출력 결과 ",arr);
             $("#future_preview0").empty();
             $("#future_preview1").empty();
             $("#future_preview2").empty();
-            for(var i=0; i<=2; i++){
+
+            // 만약 slide_future_index가 total_length보다 크면 다시 slide_future를 1로 초기화
+            // 이 작업을 안하면 slide_future_index가 계속 커지면서 Ajax 출력 값보다 커지면 오류 발생하기 때문에 1페이지로 돌아갈 필요가 있다.
+            if(slide_future_index > total_length){
+              slide_future = 1;
+              slide_future_index = 3;
+            }
+
+            for(var i=slide_future_index-3; i<=slide_future_index-1; i++){
               var img = $("<img>").attr({
                 src: "/images/"+arr[i].img_fname,
                 width : 300,
                 height: 400
               });
-              $("#future_preview"+i).attr('ticketid', arr[i].ticketid);
+
+              $("#future_preview"+(i%3)).attr('ticketid', arr[i].ticketid);
               var url = "/detail?ticketid="+arr[i].ticketid;
-              $("#future_preview"+i).attr('href', url);
-              $("#future_preview"+i).append(img);
+              $("#future_preview"+(i%3)).attr('href', url);
+              $("#future_preview"+(i%3)).append(img);
 
               // 이미지 누르면 detail 페이지로
-              var future_preview = '#future_preview'+i;
+              var future_preview = '#future_preview'+(i%3);
 
               $(document).on('click', future_preview, function(){
                 var target = this.id;
@@ -181,13 +205,16 @@
 
       selectRankingBycategory();
       selectCurrentBycategory();
-      selectFutureBycategory();
+      selectFutureBycategory(slide_future_index);
 
+      // 랭킹, 시간, 카테고리별로 클릭
       $(document).on('click', '.preview', function(){
         // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
         cateid = $(this).attr("id").match(/\d+/)[0];
         let id = $(this).attr("id");
-        console.log(id);
+        slide_future = 1;
+        slide_future_index = 3;
+
         switch (id){
           case "rank_cate"+cateid :
             selectRankingBycategory();
@@ -196,69 +223,10 @@
             selectCurrentBycategory();
             break;
           case "future_cate"+cateid:
-            selectFutureBycategory();
+            selectFutureBycategory(slide_future_index);
             break;
         }
       });
-
-
-      // // 랭킹에서 카테고리 클릭
-      // $(document).on('click', '#rank_cate1', function(){
-      //   cateid =1;
-      //   selectRankingBycategory();
-      // });
-      // $(document).on('click', '#rank_cate2', function(){
-      //   cateid =2;
-      //   selectRankingBycategory();
-      // });
-      // $(document).on('click', '#rank_cate3', function(){
-      //   cateid =3;
-      //   selectRankingBycategory();
-      // });
-      // $(document).on('click', '#rank_cate4', function(){
-      //   cateid =4;
-      //   selectRankingBycategory();
-      // });
-      //
-      //
-      //
-      //
-      // // 현재 상영작 카테고리 클릭
-      // $(document).on('click', '#current_cate1', function(){
-      //   cateid = 1;
-      //   selectCurrentBycategory();
-      // })
-      // $(document).on('click', '#current_cate2', function(){
-      //   cateid = 2;
-      //   selectCurrentBycategory();
-      // })
-      // $(document).on('click', '#current_cate3', function(){
-      //   cateid = 3;
-      //   selectCurrentBycategory();
-      // })
-      // $(document).on('click', '#current_cate4', function(){
-      //   cateid = 4;
-      //   selectCurrentBycategory();
-      // })
-      //
-      // // 미래 상영작 카테고리 클릭
-      // $(document).on('click', '#future_cate1', function(){
-      //   cateid = 1;
-      //   selectFutureBycategory();
-      // })
-      // $(document).on('click', '#future_cate2', function(){
-      //   cateid = 2;
-      //   selectFutureBycategory();
-      // })
-      // $(document).on('click', '#future_cate3', function(){
-      //   cateid = 3;
-      //   selectFutureBycategory();
-      // })
-      // $(document).on('click', '#future_cate4', function(){
-      //   cateid = 4;
-      //   selectFutureBycategory();
-      // })
-
       // 로그인한 정보 불러오기
 
       // var custid = sessionStorage.getItem("custid");
@@ -396,6 +364,7 @@
       <li><a id="future_cate3" class="preview">연극</a></li>
       <li><a id="future_cate4" class="preview">콘서트</a></li>
     </ul>
+    <a id="btn_next">다음으로</a>
     <br>
   </div>
   <a class="img" id="future_preview0"></a>
