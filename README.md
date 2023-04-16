@@ -236,18 +236,29 @@
 ### ✂️ 보완 및 수정 사항
 
 <details>
-<summary>중복되는 코드 간략화 및 기능 추가</summary>
+<summary>상영작 출력 기능 보완</summary>
+<div markdown="1">
+<br>
+ 
+프로젝트 완성 시점에서는 현재, 미래 상영작이 3개 이상임에도 순서대로 출력되는 3개의 상영작만 확인 가능하였는데
+ 
+이를 보완하여 '다음으로' 버튼을 누르면 나머지 상영작들이 출력될 수 있도록 코드를 수정하였습니다 (현재 미래 상영작만 적용 + css 적용 x).
+ 
+만약 모든 상영작이 순서대로 출력되었다면 다시 '다음으로'이나 해당 카테고리 버튼을 누르면, 처음에 출력되었던 상영작이 다시 출력됩니다.
+
+:pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/b2c4f4bb12c434ee1e4180593366df6e9161cbdc/src/main/resources/templates/main.html#L144)
+
+</div>
+</details>
+
+<details>
+<summary>중복되는 코드 간략화</summary>
 <div markdown="1">
 <br>
  main 페이지에서 시간, 랭킹, 카테고리별 상영작을 출력하는 데에 지나치게 중복된 코드를 작성한 것을 간략화하였습니다.
  
  그 결과, 같은 기능을 하면서도 훨씬 가독성 좋은 코드를 완성할 수 있었습니다.
  
- 또한 프로젝트 완성 시점에서는 현재, 미래 상영작이 3개 이상임에도 순서대로 출력되는 3개의 상영작만 확인 가능하였는데
- 
- 이를 보완하여 '다음으로' 버튼을 누르면 나머지 상영작들이 출력될 수 있도록 코드를 수정하였습니다 (현재 미래 상영작만 적용).
- 
- :pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/b2c4f4bb12c434ee1e4180593366df6e9161cbdc/src/main/resources/templates/main.html#L144)
  
   <details>
   <summary>이전 코드</summary>
@@ -315,22 +326,6 @@
   <details>
   <summary>수정 코드</summary>
   <div markdown="1">
-  
-  
-      // '다음으로' 버튼을 누르면 Ajax 호출할 때 다음 3개 더 출력하게 하기
-      // slide_future : 페이지 번호 개념.
-      // slide_future_index : slide_future, 즉 해당 페이지에서 출력하는 마지막 index번호
-      // total_length : Ajax로 출력하는 레코드의 총 숫자 (만약 slide_future_index가 total_length보다 크면 다시 slide_future를 1로 초기화한다)
-      let slide_future = 1;
-      let slide_future_index = 3;
-      let total_length;
-
-      // '다음으로' 버튼을 클릭하면 다음 3개의 상영작을 출력하기
-      $(document).on('click', '#btn_next', function(){
-      slide_future++;
-      slide_future_index = slide_future * 3;
-      selectFutureBycategory(slide_future_index);
-      });
   
        $(document).on('click', '.preview', function(){
           // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
