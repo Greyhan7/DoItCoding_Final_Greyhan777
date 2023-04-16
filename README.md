@@ -67,7 +67,7 @@
 
 <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/230832844-1e3046ea-44eb-4f5c-b2d5-ad1b2d50a06c.png">
 
- :pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/be6a0e084076056878e20a1871480e090f71ab59/src/main/resources/templates/main.html#L76)
+ :pushpin: [코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/0b4a78125f478064a2915a2f362bb277404a056c/src/main/resources/templates/main.html#L75)
 
 - cateid에 따라 장르별로 다르게 출력되도록 정의.
 - time 변수를 정의하여 각각 값이 0, 1, 2일떄 과거, 현재, 미래 상영작을 출력.
@@ -132,7 +132,9 @@
 <details>
 <summary>3. 로그인, 회원가입 기능 일부 구현</summary>
 <div markdown="1">
+<br>
 
+- 회원가입 시 아이디 중복체크, 비밀번호 일치-불일치, 비밀번호 조건 (정규화) 등 작업.
 
 </div>
 </details>
@@ -146,7 +148,12 @@
 <img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/231105156-2f77c494-cc4b-48fe-91d5-ebae62c5c76f.png">
 
 - mainAdmin 페이지를 통해서 고객관리, 상영작 관리, 공지사항 관리 페이지로 접속 가능.
+- 정석적인 CRUD, 페이징 처리, 정렬, 검색 기능을 가진 두 게시판.
+- Thymeleaf를 통해 프론트 구현 및 페이징 처리, 정렬, 검색 기능 활용.
+
 - :pushpin: [Controller 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/java/com/example/finalpro/controller/AdminController.java)
+- :pushpin: [View 코드 확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/adcfbb19db9c44741fc87fc67c10323d4d1d1c95/src/main/resources/templates/admin/customer/list.html)
+
 
 #### 4-1. 고객 관리 페이지
 
@@ -220,6 +227,105 @@
 
 :pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/a1d6a664e70aed9ddb54071ef82c40b54f53f8a0/src/main/resources/templates/admin/ticket/insertTicket.html#L55)
 
+</div>
+</details>
+
+<details>
+<summary>중복되는 코드 간략화</summary>
+<div markdown="1">
+<br>
+ main 페이지에서 시간, 랭킹, 카테고리별 상영작을 출력하는 데에 지나치게 중복된 코드를 작성한 것을 간략화하였습니다.
+ 
+ 그 결과, 같은 기능을 하면서도 훨씬 가독성 좋은 코드를 완성할 수 있었습니다.
+ 
+  <details>
+  <summary>이전 코드</summary>
+  <div markdown="1">
+     
+      // 랭킹에서 카테고리 클릭
+      $(document).on('click', '#rank_cate1', function(){
+        cateid =1;
+        selectRankingBycategory();
+      });
+      $(document).on('click', '#rank_cate2', function(){
+        cateid =2;
+        selectRankingBycategory();
+      });
+      $(document).on('click', '#rank_cate3', function(){
+        cateid =3;
+        selectRankingBycategory();
+      });
+      $(document).on('click', '#rank_cate4', function(){
+        cateid =4;
+        selectRankingBycategory();
+      });
+
+
+      // 현재 상영작 카테고리 클릭
+      $(document).on('click', '#current_cate1', function(){
+        cateid = 1;
+        selectCurrentBycategory();
+      })
+      $(document).on('click', '#current_cate2', function(){
+        cateid = 2;
+        selectCurrentBycategory();
+      })
+      $(document).on('click', '#current_cate3', function(){
+        cateid = 3;
+        selectCurrentBycategory();
+      })
+      $(document).on('click', '#current_cate4', function(){
+        cateid = 4;
+        selectCurrentBycategory();
+      })
+
+      // 미래 상영작 카테고리 클릭
+      $(document).on('click', '#future_cate1', function(){
+        cateid = 1;
+        selectFutureBycategory();
+      })
+      $(document).on('click', '#future_cate2', function(){
+        cateid = 2;
+        selectFutureBycategory();
+      })
+      $(document).on('click', '#future_cate3', function(){
+        cateid = 3;
+        selectFutureBycategory();
+      })
+      $(document).on('click', '#future_cate4', function(){
+        cateid = 4;
+        selectFutureBycategory();
+      })
+     
+
+  </div>
+  </details>
+  
+  <details>
+  <summary>수정 코드</summary>
+  <div markdown="1">
+  
+    $(document).on('click', '.preview', function(){
+          // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
+          cateid = $(this).attr("id").match(/\d+/)[0];
+          let id = $(this).attr("id");
+          console.log(id);
+          switch (id){
+            case "rank_cate"+cateid :
+              selectRankingBycategory();
+              break;
+            case "current_cate"+cateid:
+              selectCurrentBycategory();
+              break;
+            case "future_cate"+cateid:
+              selectFutureBycategory();
+              break;
+          }
+        });
+ 
+  </div>
+  </details>
+ 
 </div>
 </details>
 
