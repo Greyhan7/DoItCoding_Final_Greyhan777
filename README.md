@@ -72,6 +72,8 @@
 - cateid에 따라 장르별로 다르게 출력되도록 정의.
 - time 변수를 정의하여 각각 값이 0, 1, 2일떄 과거, 현재, 미래 상영작을 출력.
 - 상영일이 현재 날짜보다 과거면 과거 상영작, 현재 날짜 ~ 현재 날짜+14일이면 현재 상영작, 현재 날짜+14일보다 크면 미래 상영작으로 mapper에서 sql문 정의.
+- 만약 해당 조건의 상영작이 3개 이상일 때, '다음으로' 버튼을 누르면 그 다음에 해당하는 상영작들이 출력된다.
+  - 끝까지 모두 출력되었을 때 해당 카테고리 버튼을 클릭하거나, '다음으로' 버튼을 다시 클릭하면 맨 처음에 나왔던 상영작들이 출력된다.
 
 ```html
 <select id="findAllTicketByCategory" resultType="ticketVO">
@@ -231,12 +233,16 @@
 </details>
 
 <details>
-<summary>중복되는 코드 간략화</summary>
+<summary>중복되는 코드 간략화 및 기능 추가</summary>
 <div markdown="1">
 <br>
  main 페이지에서 시간, 랭킹, 카테고리별 상영작을 출력하는 데에 지나치게 중복된 코드를 작성한 것을 간략화하였습니다.
  
  그 결과, 같은 기능을 하면서도 훨씬 가독성 좋은 코드를 완성할 수 있었습니다.
+ 
+ 또한 프로젝트 완성 시점에서는 현재, 미래 상영작이 3개 이상임에도 순서대로 출력되는 3개의 상영작만 확인 가능하였는데
+ 
+ 이를 보완하여 '다음으로' 버튼을 누르면 나머지 상영작들이 출력될 수 있도록 코드를 수정하였습니다 (현재 미래 상영작만 적용).
  
   <details>
   <summary>이전 코드</summary>
@@ -305,11 +311,29 @@
   <summary>수정 코드</summary>
   <div markdown="1">
   
-    $(document).on('click', '.preview', function(){
+  
+      // '다음으로' 버튼을 누르면 Ajax 호출할 때 다음 3개 더 출력하게 하기
+      // slide_future : 페이지 번호 개념.
+      // slide_future_index : slide_future, 즉 해당 페이지에서 출력하는 마지막 index번호
+      // total_length : Ajax로 출력하는 레코드의 총 숫자 (만약 slide_future_index가 total_length보다 크면 다시 slide_future를 1로 초기화한다)
+      let slide_future = 1;
+      let slide_future_index = 3;
+      let total_length;
+
+      // '다음으로' 버튼을 클릭하면 다음 3개의 상영작을 출력하기
+      $(document).on('click', '#btn_next', function(){
+      slide_future++;
+      slide_future_index = slide_future * 3;
+      selectFutureBycategory(slide_future_index);
+      });
+  
+       $(document).on('click', '.preview', function(){
           // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
           cateid = $(this).attr("id").match(/\d+/)[0];
           let id = $(this).attr("id");
-          console.log(id);
+          slide_future = 1;
+          slide_future_index = 3;
+        
           switch (id){
             case "rank_cate"+cateid :
               selectRankingBycategory();
@@ -318,7 +342,7 @@
               selectCurrentBycategory();
               break;
             case "future_cate"+cateid:
-              selectFutureBycategory();
+              selectFutureBycategory(slide_future_index);
               break;
           }
         });
