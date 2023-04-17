@@ -130,6 +130,15 @@
 <div markdown="1">
 <br>
 
+<img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/232431254-d2c900fa-dbfb-4f42-94a7-21d7d8190aa0.png">
+
+- 로그인 시 아이디와 비밀번호 일치 불일치 구현.
+  - JavaScript로 값을 읽어와 이를 Ajax 통신 Post 방식으로 Controller에서 처리.
+
+<br>
+
+<img width="525" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/232431433-b56d8b56-c41c-4928-b022-77bdfcb384a9.png">
+
 - 회원가입 시 아이디 중복체크, 비밀번호 일치-불일치, 비밀번호 조건 (정규화) 등 작업.
 
 </div>
