@@ -22,13 +22,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -388,4 +386,18 @@ public class CustomerController {
         }
         return "OK";
     }
+
+    // 카카오 로그인
+    @GetMapping("/oauth/kakao")
+    @ResponseBody
+    public void kakaoLogin(@RequestParam String code){
+        String access_token = cs.getKakaoToken(code);
+        HashMap<String, String> userInfo = cs.getKakaoUser(access_token);
+        String name = userInfo.get("nickname");
+        String email = userInfo.get("email");
+
+
+
+    }
+
 }
