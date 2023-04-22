@@ -17,24 +17,18 @@
 - 관리자 페이지에서 상영작, 회원 정보 관리 (입력, 수정, 삭제 등)
 - 관리자가 공지사항 작성, 사용자가 작성한 1대1 문의 답변 (답변 시 사용자 메인 화면에 알람이 생성됨)
 
-### :alarm_clock: 개발기간
+### :alarm_clock: 개발기간 및 인원
 - 2023.02.15 - 2023.03.06 (20일)
+- 6명
 
-
-### 👥 멤버구성
- - 김고운
- - 신윤경
- - 이명진
- - 유근형
- - 조영민
- - 황은선
 <hr>
 
 ### ⚙️ 개발환경
  - java 17
- - DataBase : ORACLE
+ - DataBase : ORACLE 21c
  - ORM : MyBatis, JPA
  - Framework : SpringBoot(3.0)
+ - View : HTML5, CSS3, JavaScript, Thymeleaf
  - IDE : IntelliJ Ultimate 2022
 
 <hr>
@@ -52,6 +46,10 @@
 <hr>
 
 ### 💻 프로젝트 담당기능 및 코드
+
+(▶ 버튼을 누르면 내용을 펼칠 수 있습니다.)
+
+
 <details>
 <summary>1. 메인 화면 구성 (시간, 카테고리, 랭킹별 상영작 출력)</summary>
 <div markdown="1">
@@ -72,6 +70,8 @@
 - cateid에 따라 장르별로 다르게 출력되도록 정의.
 - time 변수를 정의하여 각각 값이 0, 1, 2일떄 과거, 현재, 미래 상영작을 출력.
 - 상영일이 현재 날짜보다 과거면 과거 상영작, 현재 날짜 ~ 현재 날짜+14일이면 현재 상영작, 현재 날짜+14일보다 크면 미래 상영작으로 mapper에서 sql문 정의.
+- 만약 해당 조건의 상영작이 3개 이상일 때, '다음으로' 버튼을 누르면 그 다음에 해당하는 상영작들이 출력된다.
+  - 끝까지 모두 출력되었을 때 해당 카테고리 버튼을 클릭하거나, '다음으로' 버튼을 다시 클릭하면 맨 처음에 나왔던 상영작들이 출력된다.
 
 ```html
 <select id="findAllTicketByCategory" resultType="ticketVO">
@@ -133,6 +133,15 @@
 <summary>3. 로그인, 회원가입 기능 일부 구현</summary>
 <div markdown="1">
 <br>
+
+<img width="725" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/232431254-d2c900fa-dbfb-4f42-94a7-21d7d8190aa0.png">
+
+- 로그인 시 아이디와 비밀번호 일치 불일치 구현.
+  - JavaScript로 값을 읽어와 이를 Ajax 통신 Post 방식으로 Controller에서 처리.
+
+<br>
+
+<img width="525" height="500" alt="image" src="https://user-images.githubusercontent.com/99037697/232431433-b56d8b56-c41c-4928-b022-77bdfcb384a9.png">
 
 - 회원가입 시 아이디 중복체크, 비밀번호 일치-불일치, 비밀번호 조건 (정규화) 등 작업.
 
@@ -230,6 +239,24 @@
 </div>
 </details>
 
+### ✂️ 보완 및 수정 사항
+
+<details>
+<summary>상영작 출력 기능 보완</summary>
+<div markdown="1">
+<br>
+ 
+프로젝트 완성 시점에서는 현재, 미래 상영작이 3개 이상임에도 순서대로 출력되는 3개의 상영작만 확인 가능하였는데
+ 
+이를 보완하여 '다음으로' 버튼을 누르면 나머지 상영작들이 출력될 수 있도록 코드를 수정하였습니다 (현재 미래 상영작만 적용 + css 적용 x).
+ 
+만약 모든 상영작이 순서대로 출력되었다면 다시 '다음으로'이나 해당 카테고리 버튼을 누르면, 처음에 출력되었던 상영작이 다시 출력됩니다.
+
+:pushpin:[코드확인](https://github.com/Greyhan7/DoItCoding_Final_Greyhan777/blob/b2c4f4bb12c434ee1e4180593366df6e9161cbdc/src/main/resources/templates/main.html#L144)
+
+</div>
+</details>
+
 <details>
 <summary>중복되는 코드 간략화</summary>
 <div markdown="1">
@@ -237,6 +264,7 @@
  main 페이지에서 시간, 랭킹, 카테고리별 상영작을 출력하는 데에 지나치게 중복된 코드를 작성한 것을 간략화하였습니다.
  
  그 결과, 같은 기능을 하면서도 훨씬 가독성 좋은 코드를 완성할 수 있었습니다.
+ 
  
   <details>
   <summary>이전 코드</summary>
@@ -305,11 +333,13 @@
   <summary>수정 코드</summary>
   <div markdown="1">
   
-    $(document).on('click', '.preview', function(){
+       $(document).on('click', '.preview', function(){
           // match(/\d+/)[0] : 정규표현식을 사용하여 'id'에서 숫자인 것을 추출한 후 그 중 첫번째 숫자([0])를 가져온다
           cateid = $(this).attr("id").match(/\d+/)[0];
           let id = $(this).attr("id");
-          console.log(id);
+          slide_future = 1;
+          slide_future_index = 3;
+        
           switch (id){
             case "rank_cate"+cateid :
               selectRankingBycategory();
@@ -318,7 +348,7 @@
               selectCurrentBycategory();
               break;
             case "future_cate"+cateid:
-              selectFutureBycategory();
+              selectFutureBycategory(slide_future_index);
               break;
           }
         });

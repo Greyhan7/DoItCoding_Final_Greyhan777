@@ -148,13 +148,14 @@
       let slide_future = 1;
       let slide_future_index = 3;
       let total_length;
+      
 
       // '다음으로' 버튼을 클릭하면 다음 3개의 상영작을 출력하기
-  $(document).on('click', '#btn_next', function(){
-    slide_future++;
-    slide_future_index = slide_future * 3;
-    selectFutureBycategory(slide_future_index);
-  });
+      $(document).on('click', '#btn_next', function(){
+        slide_future++;
+        slide_future_index = slide_future * 3;
+        selectFutureBycategory(slide_future_index);
+      });
 
       // 미래상영작 출력
       var selectFutureBycategory = function(slide_future_index){
